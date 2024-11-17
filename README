@@ -1,0 +1,10 @@
+推荐使用druid做连接池, 他的报错日志较为清晰, 便于快速debug
+
+数据库dump命令
+```bash
+mysqldump -u root -p --databases docker_demo > backup.sql
+```
+--databases 参数的作用是导出建数据库的语句, 如果没有这个选项, 那么只会导出建表语句
+
+挂载了backup.sql之后, 需要自行进入mysql Container登录mysql root用户 执行 ` source /docker-entrypoint-initdb.d/backup.sql; `
+才能完成数据初始化

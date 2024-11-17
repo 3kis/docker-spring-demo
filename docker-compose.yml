@@ -1,0 +1,33 @@
+version: '3'
+
+services:
+  user-serivice:
+    image: user-service:1.0
+    ports:
+      - 8081:8081
+      - 8080:8080
+    networks:
+      - user-service-network
+    depends_on:
+      - docker-demo-mysql8
+
+  docker-demo-mysql8:
+    image: mysql:8.0
+    ports:
+      - 3406:3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+    networks:
+      - user-service-network
+    volumes:
+      - ./backup.sql:/docker-entrypoint-initdb.d/backup.sql
+      - mysql8_data:/var/lib/mysql
+
+
+volumes:
+  mysql8_data:
+    driver: local
+
+networks:
+  user-service-network:
+    driver: bridge

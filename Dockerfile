@@ -11,4 +11,4 @@ COPY ./application /home/app
 RUN mv /home/app/application /home/app/application.yml
 
 
-CMD ["nohup", "java", "-jar", "/home/app/docker-spring-demo-1.0-SNAPSHOT.jar"]
+CMD ["nohup", "java", "-Dfile.encoding=utf-8", "-jar", "/home/app/docker-spring-demo-1.0-SNAPSHOT.jar"]

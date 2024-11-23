@@ -8,3 +8,10 @@ mysqldump -u root -p --databases docker_demo > backup.sql
 
 挂载了backup.sql之后, 需要自行进入mysql Container登录mysql root用户 执行 ` source /docker-entrypoint-initdb.d/backup.sql; `
 才能完成数据初始化
+
+
+建议使用绝对路径运行jar包
+
+```bash
+java -server -
+
